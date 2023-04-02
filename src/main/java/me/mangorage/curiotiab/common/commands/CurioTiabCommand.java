@@ -13,6 +13,7 @@ import me.mangorage.curiotiab.common.network.server.OpenConfigScreen;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.network.PacketDistributor;
@@ -34,8 +35,8 @@ public class CurioTiabCommand {
                                 .executes((stack) -> {return processTimeCommand(stack, false);})))
                 .then(Commands.literal("configureOverlay")
                         .executes((stack) -> {
-                            ServerPlayer player = stack.getSource().getPlayer();
-                            if (player != null)
+                            Entity entity = stack.getSource().getEntity();
+                            if (entity instanceof ServerPlayer player)
                                 NetworkHandler.NETWORK_CHANNEL.send(PacketDistributor.PLAYER.with(() -> player), OpenConfigScreen.getInstance());
                             return 1;
                         })));

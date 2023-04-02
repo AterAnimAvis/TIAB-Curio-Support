@@ -114,8 +114,8 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
 
-    if (mc_version.contentEquals("1.19.2")) {
-        OnlyBoth(fg.deobf("${tiab_mod}:3879896"))
+    if (mc_version.contentEquals("1.18.2")) {
+        OnlyBoth(fg.deobf("${tiab_mod}:3565298"))
     }
 
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${mc_version}-+")

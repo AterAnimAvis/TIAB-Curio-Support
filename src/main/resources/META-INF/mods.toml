@@ -1,5 +1,5 @@
 modLoader = "javafml" #mandatory
-loaderVersion = "[43,)"
+loaderVersion = "[40,)"
 license = "MIT"
 [[mods]] #mandatory
 modId = "curiotiab" #mandatory
@@ -18,13 +18,13 @@ side="BOTH"
 [[dependencies.curiotiab]]
 modId="curios"
 mandatory=true
-versionRange="[1.19,)"
+versionRange="[1.18,)"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.curiotiab]]
 modId="tiab"
 mandatory=true
-versionRange="[1.19,)"
+versionRange="[1.18,)"
 ordering="NONE"
 side="BOTH"

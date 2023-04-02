@@ -1,7 +1,7 @@
 package me.mangorage.curiotiab.common.core;
 
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 
 public class Translatable {
     public final static Translatable
@@ -25,7 +25,7 @@ public class Translatable {
     }
 
     public MutableComponent get(String... args) {
-        return Component.translatable(key, args);
+        return new TranslatableComponent(key, (Object[]) args);
     }
 
     public String getKey() {

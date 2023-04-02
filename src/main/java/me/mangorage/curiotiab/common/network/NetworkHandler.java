@@ -28,13 +28,13 @@ public class NetworkHandler {
         NETWORK_CHANNEL.messageBuilder(UseTiabPacket.class, id++, NetworkDirection.PLAY_TO_SERVER)
                 .decoder(UseTiabPacket::getInstance)
                 .encoder(NetworkHandler::emptyPayload)
-                .consumerMainThread(UseTiabPacket::handle)
+                .consumer(UseTiabPacket::handle)
                 .add();
 
         NETWORK_CHANNEL.messageBuilder(OpenConfigScreen.class, id++, NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(OpenConfigScreen::getInstance)
                 .encoder(NetworkHandler::emptyPayload)
-                .consumerMainThread(OpenConfigScreen::handle)
+                .consumer(OpenConfigScreen::handle)
                 .add();
     }
 }

@@ -6,10 +6,11 @@ import me.mangorage.curiotiab.client.ClientUtils;
 import me.mangorage.curiotiab.client.screens.overlays.CurioTiabHudOverlay;
 import me.mangorage.curiotiab.common.core.Translatable;
 import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.minecraftforge.client.gui.ScreenUtils;
+import net.minecraft.network.chat.TranslatableComponent;
 import org.apache.commons.lang3.mutable.MutableInt;
 
 import java.util.ArrayList;
@@ -81,16 +82,16 @@ public class ConfigurationScreen extends Screen {
     @Override
     public void onClose() {
         CurioTiabHudOverlay.setHidden(hiddenMode);
-        Minecraft.getInstance().player.sendSystemMessage(Component.translatable(Translatable.SCREEN_CLOSED.getKey()).withStyle(ChatFormatting.GREEN));
+        Minecraft.getInstance().player.sendMessage(new TranslatableComponent(Translatable.SCREEN_CLOSED.getKey()).withStyle(ChatFormatting.GREEN), Util.NIL_UUID);
         super.onClose();
     }
 
     public void updateComponents() {
         components.clear();
         components.add(Translatable.SCREEN_DRAG.get().withStyle(ChatFormatting.GOLD));
-        components.add(Translatable.SCREEN_CLOSE.get().withStyle(ChatFormatting.GOLD));
-        components.add(Translatable.SCREEN_SAVE.get().withStyle(ChatFormatting.GOLD));
-        components.add(Translatable.SCREEN_RESET.get().withStyle(ChatFormatting.GOLD));
+        //components.add(Translatable.SCREEN_CLOSE.get().withStyle(ChatFormatting.GOLD));
+        //components.add(Translatable.SCREEN_SAVE.get().withStyle(ChatFormatting.GOLD));
+        //components.add(Translatable.SCREEN_RESET.get().withStyle(ChatFormatting.GOLD));
         this.maxWidth = ClientUtils.getMaxStringsWidth(components, font);
     }
 
@@ -109,12 +110,12 @@ public class ConfigurationScreen extends Screen {
     }
 
     private void save() {
-        minecraft.player.sendSystemMessage(Translatable.MSG_SAVED.get().withStyle(ChatFormatting.GREEN));
+        minecraft.player.sendMessage(Translatable.MSG_SAVED.get().withStyle(ChatFormatting.GREEN), Util.NIL_UUID);
         CurioTiabHudOverlay.getInstance().setPosition(x, y);
     }
 
     private void reset() {
-        minecraft.player.sendSystemMessage(Translatable.MSG_RESET.get().withStyle(ChatFormatting.GREEN));
+        minecraft.player.sendMessage(Translatable.MSG_RESET.get().withStyle(ChatFormatting.GREEN), Util.NIL_UUID);
         CurioTiabHudOverlay.getInstance().setPosition(5, 5);
         this.x = 5;
         this.y = 5;

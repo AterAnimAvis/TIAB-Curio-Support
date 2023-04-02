@@ -6,11 +6,11 @@ import me.mangorage.curiotiab.common.network.client.UseTiabPacket;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
-import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
+import net.minecraftforge.client.gui.OverlayRegistry;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.network.PacketDistributor;
 
 import static com.mojang.blaze3d.platform.InputConstants.KEY_G;
@@ -26,14 +26,10 @@ public class ClientRegistry {
     public final static KeyMapping hideGUI = new KeyMapping(TOGGLE_KEY.getKey(), KEY_H, CATEGORY_KEY.getKey());
 
     @SubscribeEvent
-    public static void registerKeys(final RegisterKeyMappingsEvent evt) {
-        evt.register(useTiab);
-        evt.register(hideGUI);
-    }
-
-    @SubscribeEvent
-    public static void registerGuiOverlays(final RegisterGuiOverlaysEvent event) {
-        event.registerAboveAll(MODID, CurioTiabHudOverlay.getInstance());
+    public static void setup(final FMLClientSetupEvent evt) {
+        net.minecraftforge.client.ClientRegistry.registerKeyBinding(useTiab);
+        net.minecraftforge.client.ClientRegistry.registerKeyBinding(hideGUI);
+        OverlayRegistry.registerOverlayTop(MODID, CurioTiabHudOverlay.getInstance());
     }
 
     @Mod.EventBusSubscriber(modid = MODID, bus = FORGE, value = Dist.CLIENT)
